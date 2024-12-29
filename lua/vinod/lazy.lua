@@ -24,4 +24,26 @@ require("lazy").setup({
     "folke/tokyonight.nvim",
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
+    
+    -- TypeScript/JavaScript LSP
+  {
+    "neovim/nvim-lspconfig", -- Core LSP configuration plugin
+  },
+
+  -- Autocompletion 
+  {
+    "hrsh7th/nvim-cmp", -- Autocompletion plugin
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
+      "hrsh7th/cmp-buffer",   -- Buffer source for nvim-cmp
+      "hrsh7th/cmp-path",     -- Path source for nvim-cmp
+      "hrsh7th/cmp-cmdline",  -- Command-line source for nvim-cmp
+      "L3MON4D3/LuaSnip",     -- Snippet engine
+    },
+  },
+
+  -- Prettier 
+  {
+    "MunifTanjim/prettier.nvim", -- Prettier plugin
+  },
   })
