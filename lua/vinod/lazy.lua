@@ -29,6 +29,7 @@ require("lazy").setup({
     {
         "neovim/nvim-lspconfig", -- Core LSP configuration plugin
     },
+    { "neovim/nvim-lspconfig" },
 
   -- Autocompletion 
     {

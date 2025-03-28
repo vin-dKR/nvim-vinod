@@ -1,4 +1,5 @@
 require("vinod")
+vim.env.PATH = vim.env.PATH .. ":/home/vinod/lua-language-server/bin"
 
 -- vim.api.nvim_set_keymap('n', 'vv', ':Vex<CR>', {noremap = true, silent = true})
 
@@ -18,11 +19,11 @@ vim.fn.sign_define("LspDiagnosticsHint", { text = "?", texthl = "LspDiagnosticsD
 
 -- Set diagnostic options
 vim.diagnostic.config({
-  virtual_text = {
-    prefix = "", -- Prefix for virtual text (could be an icon or text)
-    spacing = 2,
-  },
-  signs = true, -- Show signs in the gutter
-  underline = true, -- Underline errors and warnings
-  update_in_insert = false, -- Update diagnostics in insert mode
+    virtual_text = {
+        prefix = "", -- Prefix for virtual text (could be an icon or text)
+        spacing = 2,
+    },
+    signs = true,             -- Show signs in the gutter
+    underline = true,         -- Underline errors and warnings
+    update_in_insert = false, -- Update diagnostics in insert mode
 })

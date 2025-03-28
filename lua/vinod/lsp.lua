@@ -4,45 +4,58 @@ local lspconfig = require('lspconfig')
 
 -- Setup for ts_ls (TypeScript/JavaScript)
 lspconfig.ts_ls.setup({
-  on_attach = function(client, bufnr)
-    -- Enable completion triggered by <Tab> and <CR>
-    vim.cmd('setlocal omnifunc=v:lua.vim.lsp.omnifunc')
+    on_attach = function(client, bufnr)
+        -- Enable completion triggered by <Tab> and <CR>
+        vim.cmd('setlocal omnifunc=v:lua.vim.lsp.omnifunc')
 
-    -- Configure tab to navigate completion
-    vim.api.nvim_buf_set_keymap(bufnr, 'i', '<Tab>', [[pumvisible() ? "<C-n>" : "<Tab>"]], { expr = true, noremap = true })
-    vim.api.nvim_buf_set_keymap(bufnr, 'i', '<S-Tab>', [[pumvisible() ? "<C-p>" : "<S-Tab>"]], { expr = true, noremap = true })
+        -- Configure tab to navigate completion
+        vim.api.nvim_buf_set_keymap(bufnr, 'i', '<Tab>', [[pumvisible() ? "<C-n>" : "<Tab>"]],
+            { expr = true, noremap = true })
+        vim.api.nvim_buf_set_keymap(bufnr, 'i', '<S-Tab>', [[pumvisible() ? "<C-p>" : "<S-Tab>"]],
+            { expr = true, noremap = true })
 
-    local opts = { noremap = true, silent = true }       
-    -- go to definition
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    -- Hover information
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    -- Rename symbol
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    -- Find references
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gR', '<Cmd>lua vim.lsp.buf.references()<CR>', opts)
-     -- Key mapping to format the current buffer
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
-  end,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  settings = {
-    -- Example settings for TypeScript/JavaScript
-    javascript = {
-      format = {
-        enable = true,
-      },
+        local opts = { noremap = true, silent = true }
+        -- go to definition
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        -- Hover information
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+        -- Rename symbol
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
+        -- Find references
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gR', '<Cmd>lua vim.lsp.buf.references()<CR>', opts)
+        -- Key mapping to format the current buffer
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    end,
+    flags = {
+        debounce_text_changes = 150,
     },
-    typescript = {
-      format = {
-        enable = true,
-      },
+    settings = {
+        -- Example settings for TypeScript/JavaScript
+        javascript = {
+            format = {
+                enable = true,
+            },
+        },
+        typescript = {
+            format = {
+                enable = true,
+            },
+        },
     },
-  },
 })
 
+-- Setup for Lua LSP (sumneko_lua)
+lspconfig.lua_ls.setup {
+    cmd = { "lua-language-server" }, -- No full path needed if in PATH
+    settings = {
+        Lua = {
+            runtime = { version = 'LuaJIT' },
+            diagnostics = { globals = { 'vim' } },
+            workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+            telemetry = { enable = false },
+        },
+    },
+}
 
 
 -- Function to show diagnostics in a floating window
@@ -74,4 +87,3 @@ function show_diagnostics_in_float()
 end
 
 vim.api.nvim_set_keymap('n', '<Leader>d', ':lua show_diagnostics_in_float()<CR>', { noremap = true, silent = true })
-
