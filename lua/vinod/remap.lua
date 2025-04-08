@@ -87,3 +87,7 @@ vim.keymap.set("n", "<leader>w", function()
     vim.lsp.buf.format()
     vim.cmd("write")
 end, { noremap = true, silent = true, desc = "Format and Save File" })
+
+vim.keymap.set("n", "y", '"+y', { desc = "Yank to clipboard" })           -- normal mode
+vim.keymap.set("v", "y", '"+y', { desc = "Yank selection to clipboard" }) -- visual mode
+vim.keymap.set("n", "yy", '"+yy', { desc = "Yank line to clipboard" })    -- yank line
