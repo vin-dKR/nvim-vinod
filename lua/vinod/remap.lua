@@ -91,3 +91,8 @@ end, { noremap = true, silent = true, desc = "Format and Save File" })
 vim.keymap.set("n", "y", '"+y', { desc = "Yank to clipboard" })           -- normal mode
 vim.keymap.set("v", "y", '"+y', { desc = "Yank selection to clipboard" }) -- visual mode
 vim.keymap.set("n", "yy", '"+yy', { desc = "Yank line to clipboard" })    -- yank line
+
+-- Jump to tab 1-9 using <leader> + number
+for i = 1, 9 do
+    vim.keymap.set("n", "<leader>" .. i, i .. "gt", { desc = "Go to tab " .. i })
+end
