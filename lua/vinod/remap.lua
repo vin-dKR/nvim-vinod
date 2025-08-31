@@ -96,3 +96,5 @@ vim.keymap.set("n", "yy", '"+yy', { desc = "Yank line to clipboard" })    -- yan
 for i = 1, 9 do
     vim.keymap.set("n", "<leader>" .. i, i .. "gt", { desc = "Go to tab " .. i })
 end
+
+vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Toggle Undotree" })

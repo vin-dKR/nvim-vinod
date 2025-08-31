@@ -1,4 +1,5 @@
 require("vinod")
+
 vim.env.PATH = vim.env.PATH .. ":/home/vinod/lua-language-server/bin"
 
 -- vim.api.nvim_set_keymap('n', 'vv', ':Vex<CR>', {noremap = true, silent = true})

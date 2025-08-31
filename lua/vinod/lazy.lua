@@ -29,13 +29,14 @@ require("lazy").setup({
 
     -- Autocompletion
     {
-        "hrsh7th/nvim-cmp",         -- Autocompletion plugin
+        "hrsh7th/nvim-cmp",             -- Autocompletion plugin
         dependencies = {
-            "hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
-            "hrsh7th/cmp-buffer",   -- Buffer source for nvim-cmp
-            "hrsh7th/cmp-path",     -- Path source for nvim-cmp
-            "hrsh7th/cmp-cmdline",  -- Command-line source for nvim-cmp
-            "L3MON4D3/LuaSnip",     -- Snippet engine
+            "hrsh7th/cmp-nvim-lsp",     -- LSP source for nvim-cmp
+            "hrsh7th/cmp-buffer",       -- Buffer source for nvim-cmp
+            "hrsh7th/cmp-path",         -- Path source for nvim-cmp
+            "hrsh7th/cmp-cmdline",      -- Command-line source for nvim-cmp
+            "L3MON4D3/LuaSnip",         -- Snippet engine
+            "saadparwaiz1/cmp_luasnip", -- LuaSnip completion source
         },
     },
 
@@ -53,5 +54,12 @@ require("lazy").setup({
         config = function()
             require("vinod.harpoon")
         end
-    }
+    },
+    {
+        "mbbill/undotree",
+        cmd = "UndotreeToggle",
+        keys = {
+            { "<leader>u", "<cmd>UndotreeToggle<CR>", desc = "Toggle Undotree" },
+        },
+    },
 })
